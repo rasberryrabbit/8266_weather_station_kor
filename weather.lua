@@ -10,7 +10,7 @@ function getweather()
   end
   _G.weinfo["h3"]=nil
   -- current weather
-  _G.to_send="GET /wid/queryDFSRSS.jsp?zone=".._G.locCode.." HTTP/1.1\r\nHost: www.kma.go.kr\r\nConnection: keep-alive\r\nAccept: */*\r\n\r\n"
+  _G.to_send="GET /wid/queryDFSRSS.jsp?zone=".._G.locCode.." HTTP/1.1\r\nHost: www.kma.go.kr\r\nConnection: Keep-Alive\r\nKeep-Alive: timeout=30\r\nAccept: */*\r\n\r\n"
   sk:connect(80,"www.kma.go.kr")
 end
 
@@ -64,6 +64,7 @@ timedisp:register(1000, tmr.ALARM_AUTO, function()
 	  _G.weinfo["h1"]=nil
 	  _G.weinfo["h2"]=nil
       collectgarbage()
+      sk:close()
       print("ok")
     end
   end)

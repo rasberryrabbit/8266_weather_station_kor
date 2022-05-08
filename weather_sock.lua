@@ -24,6 +24,9 @@ sk:on("receive", function(sck, c)
 
       if i~=nil then
         _G.ContLen=tonumber(string.match(c,"Content%-Length:%s+(%d+)"))
+        if _G.ContLen==nil then
+          _G.ContLen=8192
+        end
         c=string.sub(c,i,-1)
       end
     end
